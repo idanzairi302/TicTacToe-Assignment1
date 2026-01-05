@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var buttons: Array<Button>
     private lateinit var tvStatus: TextView
+    private lateinit var btnReset: Button
 
     private var currentPlayer = "X"
     private var board = Array(9) { "" }
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         tvStatus = findViewById(R.id.tvStatus)
+        btnReset = findViewById(R.id.btnReset)
 
         buttons = arrayOf(
             findViewById(R.id.btn0), findViewById(R.id.btn1), findViewById(R.id.btn2),
@@ -29,6 +31,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         for (button in buttons) {
             button.setOnClickListener(this)
+        }
+
+        btnReset.setOnClickListener {
+            resetGame()
         }
     }
 
@@ -46,9 +52,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (checkWin()) {
             tvStatus.text = "Player $currentPlayer Wins!"
             isGameActive = false
+            btnReset.visibility = View.VISIBLE
         } else if (board.none { it.isEmpty() }) {
             tvStatus.text = "It's a Draw!"
             isGameActive = false
+            btnReset.visibility = View.VISIBLE
         } else {
             currentPlayer = if (currentPlayer == "X") "O" else "X"
             tvStatus.text = "Player $currentPlayer's Turn"
@@ -71,5 +79,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
         return false
+    }
+
+    private fun resetGame() {
+        currentPlayer = "X"
+        board = Array(9) { "" }
+        isGameActive = true
+        tvStatus.text = "Player X's Turn"
+        btnReset.visibility = View.GONE
+
+        for (button in buttons) {
+            button.text = ""
+        }
     }
 }
