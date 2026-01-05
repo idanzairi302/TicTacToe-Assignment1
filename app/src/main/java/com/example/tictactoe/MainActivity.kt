@@ -46,6 +46,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (checkWin()) {
             tvStatus.text = "Player $currentPlayer Wins!"
             isGameActive = false
+        } else if (board.none { it.isEmpty() }) {
+            tvStatus.text = "It's a Draw!"
+            isGameActive = false
         } else {
             currentPlayer = if (currentPlayer == "X") "O" else "X"
             tvStatus.text = "Player $currentPlayer's Turn"
