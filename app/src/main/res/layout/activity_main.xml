@@ -17,4 +17,18 @@
         android:textSize="24sp"
         android:layout_marginBottom="20dp"/>
 
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rowCount="3"
+        android:columnCount="3">
+
+        <!-- Row 0 -->
+        <Button android:id="@+id/btn0" style="@style/TicTacButton"/>
+        <Button android:id="@+id/btn1" style="@style/TicTacButton"/>
+        <Button android:id="@+id/btn2" style="@style/TicTacButton"/>
+
+    </GridLayout>
+
 </LinearLayout>
