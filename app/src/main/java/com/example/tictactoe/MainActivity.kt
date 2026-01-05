@@ -43,7 +43,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         board[index] = currentPlayer
         button.text = currentPlayer
 
-        currentPlayer = if (currentPlayer == "X") "O" else "X"
-        tvStatus.text = "Player $currentPlayer's Turn"
+        if (checkWin()) {
+            tvStatus.text = "Player $currentPlayer Wins!"
+            isGameActive = false
+        } else {
+            currentPlayer = if (currentPlayer == "X") "O" else "X"
+            tvStatus.text = "Player $currentPlayer's Turn"
+        }
+    }
+
+    private fun checkWin(): Boolean {
+        val winPositions = arrayOf(
+            intArrayOf(0, 1, 2), intArrayOf(3, 4, 5), intArrayOf(6, 7, 8), // Rows
+            intArrayOf(0, 3, 6), intArrayOf(1, 4, 7), intArrayOf(2, 5, 8), // Columns
+            intArrayOf(0, 4, 8), intArrayOf(2, 4, 6)  // Diagonals
+        )
+
+        for (pos in winPositions) {
+            if (board[pos[0]] == currentPlayer &&
+                board[pos[1]] == currentPlayer &&
+                board[pos[2]] == currentPlayer
+            ) {
+                return true
+            }
+        }
+        return false
     }
 }
