@@ -29,6 +29,15 @@
         <Button android:id="@+id/btn1" style="@style/TicTacButton"/>
         <Button android:id="@+id/btn2" style="@style/TicTacButton"/>
 
+        <!-- Row 1 -->
+        <Button android:id="@+id/btn3" style="@style/TicTacButton"/>
+        <Button android:id="@+id/btn4" style="@style/TicTacButton"/>
+        <Button android:id="@+id/btn5" style="@style/TicTacButton"/>
+
+        <!-- Row 2 -->
+        <Button android:id="@+id/btn6" style="@style/TicTacButton"/>
+        <Button android:id="@+id/btn7" style="@style/TicTacButton"/>
+        <Button android:id="@+id/btn8" style="@style/TicTacButton"/>
     </GridLayout>
 
 </LinearLayout>
