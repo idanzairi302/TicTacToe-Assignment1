@@ -26,9 +26,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             findViewById(R.id.btn3), findViewById(R.id.btn4), findViewById(R.id.btn5),
             findViewById(R.id.btn6), findViewById(R.id.btn7), findViewById(R.id.btn8)
         )
+
+        for (button in buttons) {
+            button.setOnClickListener(this)
+        }
     }
 
     override fun onClick(view: View?) {
-        // To be implemented
+        if (!isGameActive) return
+
+        val button = view as Button
+        val index = buttons.indexOf(button)
+
+        if (board[index].isNotEmpty()) return
+
+        board[index] = currentPlayer
+        button.text = currentPlayer
+
+        currentPlayer = if (currentPlayer == "X") "O" else "X"
+        tvStatus.text = "Player $currentPlayer's Turn"
     }
 }
